@@ -1,0 +1,46 @@
+<form action="#" class="p-4 border rounded" id="signupForm">
+
+    <!-- Email Input -->
+    <div class="row form-group">
+      <div class="col-md-12 mb-3 mb-md-0">
+        <label class="text-black" for="email">Email</label>
+        <input type="email" id="email" class="form-control" placeholder="Email address" required>
+      </div>
+    </div>
+    
+    <!-- Password Input -->
+    <div class="row form-group">
+      <div class="col-md-12 mb-3 mb-md-0">
+        <label class="text-black" for="password">Password</label>
+        <input type="password" id="password" class="form-control" placeholder="Password" required>
+      </div>
+    </div>
+    
+    <!-- Re-Type Password Input -->
+    <div class="row form-group mb-4">
+      <div class="col-md-12 mb-3 mb-md-0">
+        <label class="text-black" for="confirmPassword">Re-Type Password</label>
+        <input type="password" id="confirmPassword" class="form-control" placeholder="Re-type Password" required>
+      </div>
+    </div>
+    
+    <!-- Submit Button -->
+    <div class="row form-group">
+      <div class="col-md-12">
+        <input type="submit" value="Sign Up" class="btn px-4 btn-primary text-white">
+      </div>
+    </div>
+    </form>
+    
+    <!-- JavaScript Validation -->
+    <script>
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+      var password = document.getElementById("password").value;
+      var confirmPassword = document.getElementById("confirmPassword").value;
+    
+      if (password !== confirmPassword) {
+        event.preventDefault(); // Prevent form submission
+        alert("Passwords do not match!");
+      }
+    });
+    </script>

@@ -46,7 +46,7 @@
     <header class="site-navbar mt-3">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="site-logo col-6"><a href="index.html">JobBoard</a></div>
+          <div class="site-logo col-6"><a href="index.html">TalentBurst</a></div>
 
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
@@ -132,13 +132,13 @@
         </div>
         <div class="row mb-5">
           <div class="col-lg-12">
-            <form class="p-4 p-md-5 border rounded" method="post">
+            <form action="jobpost.php" class="p-4 p-md-5 border rounded" method="post" id="jobpost">
               <h3 class="text-black mb-5 border-bottom pb-2">Job Details</h3>
               
               <div class="form-group">
                 <label for="company-website-tw d-block">Upload Featured Image</label> <br>
                 <label class="btn btn-primary btn-md btn-file">
-                  Browse File<input type="file" hidden>
+                  Browse File<input type="file" id="featuredImage" hidden>
                 </label>
               </div>
 
@@ -212,26 +212,27 @@
 
               <div class="form-group">
                 <label for="company-website-fb">Facebook Username (Optional)</label>
-                <input type="text" class="form-control" id="company-website-fb" placeholder="companyname">
+                <input type="text" class="form-control" id="fb-username" placeholder="companyname">
               </div>
 
               <div class="form-group">
                 <label for="company-website-tw">Twitter Username (Optional)</label>
-                <input type="text" class="form-control" id="company-website-tw" placeholder="@companyname">
+                <input type="text" class="form-control" id="twitter-username" placeholder="@companyname">
               </div>
               <div class="form-group">
                 <label for="company-website-tw">Linkedin Username (Optional)</label>
-                <input type="text" class="form-control" id="company-website-tw" placeholder="companyname">
+                <input type="text" class="form-control" id="linkedin-username" placeholder="companyname">
               </div>
 
               <div class="form-group">
                 <label for="company-website-tw d-block">Upload Logo</label> <br>
                 <label class="btn btn-primary btn-md btn-file">
-                  Browse File<input type="file" hidden>
+                  Browse File<input type="file" id="company-logo" hidden>
                 </label>
               </div>
+                         <!-- Response Message Container -->
+    <div id="responseMessage" class=" mb-3"></div>
 
-            </form>
           </div>
 
          
@@ -244,8 +245,12 @@
                 <a href="#" class="btn btn-block btn-light btn-md"><span class="icon-open_in_new mr-2"></span>Preview</a>
               </div>
               <div class="col-6">
-                <a href="#" class="btn btn-block btn-primary btn-md">Save Job</a>
+                <input type="submit" value="Post" class="btn btn-block btn-primary btn-md">
+
+                <!-- <a href="#" class="btn btn-block btn-primary btn-md">Save Job</a> -->
+
               </div>
+            </form>
             </div>
           </div>
         </div>
@@ -332,6 +337,9 @@
     
     <script src="js/custom.js"></script>
    
+    <!-- custom js file -->
+    <script src="myjs/jobpostvalidation.js"></script>
+
    
      
   </body>

@@ -1,9 +1,9 @@
 document.getElementById("loginForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the form from submitting the traditional way
-
-    var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value;
+    var email = document.getElementById("emailData").value;
+    var password = document.getElementById("passwordData").value;
     var loginMessageElement = document.getElementById("loginMessage");
+
 
     if (email.trim() === "" || password.trim() === "") {
         loginMessageElement.textContent = "Please fill out all fields.";

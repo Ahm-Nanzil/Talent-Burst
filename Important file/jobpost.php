@@ -10,7 +10,7 @@ if ($connection->connect_error) {
 // Check if the request method is POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Get form data from the AJAX request
-$featuredImage = $_POST["featuredImage"];
+$featuredImage = $_FILES["featuredImage"]; // Use $_FILES to access the uploaded file
 $email = $_POST['email'];
 $jobTitle = $_POST['jobTitle'];
 $location = $_POST['location'];
@@ -24,11 +24,11 @@ $website = $_POST['website'];
 $facebookUsername = $_POST['facebookUsername'];
 $twitterUsername = $_POST['twitterUsername'];
 $linkedinUsername = $_POST['linkedinUsername'];
-$logo = $_POST["logo"];
+$logo = $_FILES["company-logo"];
 
     // Insert data into the database
     $sql = "INSERT INTO jobpost (featured_image, email, job_title, location, job_region, job_type, job_description, company_name, tagline, company_description, website, facebook_username, twitter_username, linkedin_username, logo)
-    VALUES ('$featuredImage', '$email', '$jobTitle', '$location', '$jobRegion', '$jobType', '$jobDescription', '$companyName', '$tagline', '$companyDescription', '$website', '$facebookUsername', '$twitterUsername', '$linkedinUsername', '$logo')";
+    VALUES ('featuredImage', '$email', '$jobTitle', '$location', '$jobRegion', '$jobType', '$jobDescription', '$companyName', '$tagline', '$companyDescription', '$website', '$facebookUsername', '$twitterUsername', '$linkedinUsername', 'nothing')";
     
     
 if ($connection->query($sql) === TRUE) {

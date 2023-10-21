@@ -1,4 +1,46 @@
+<?php
+require 'connection/database.php';
 
+$sql = "SELECT * FROM jobpost LIMIT 1"; // Fetch only one row
+
+$result = $connection->query($sql);
+
+if ($result->num_rows > 0) {
+    // Output data of the first row
+    $row = $result->fetch_assoc();
+
+    // Assign each column to a variable
+    $id = $row["id"];
+    $featuredImage = $row["featured_image"];
+    $email = $row["email"];
+    $jobTitle = $row["job_title"];
+    $location = $row["location"];
+    $jobRegion = $row["job_region"];
+    $jobType = $row["job_type"];
+    $jobDescription = $row["job_description"];
+    $companyName = $row["company_name"];
+    $tagline = $row["tagline"];
+    $companyDescription = $row["company_description"];
+    $website = $row["website"];
+    $facebookUsername = $row["facebook_username"];
+    $twitterUsername = $row["twitter_username"];
+    $linkedinUsername = $row["linkedin_username"];
+    $logo = $row["logo"];
+    $publishedDate = $row["published_date"];
+    $vacancy = $row["vacancy"];
+    $experience = $row["experience"];
+    $salary = $row["salary"];
+    $gender = $row["gender"];
+    $applicationDeadline = $row["application_deadline"];
+
+    $formattedPublishDate = date("j F Y", strtotime($publishedDate));
+    $formattedDeadlineDate = date("j F Y", strtotime($applicationDeadline));
+
+
+} else {
+    echo "0 results";
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -94,11 +136,11 @@
       <div class="container">
         <div class="row">
           <div class="col-md-7">
-            <h1 class="text-white font-weight-bold">Product Designer</h1>
+            <h1 class="text-white font-weight-bold"><?php echo $jobTitle; ?></h1>
             <div class="custom-breadcrumbs">
               <a href="#">Home</a> <span class="mx-2 slash">/</span>
               <a href="#">Job</a> <span class="mx-2 slash">/</span>
-              <span class="text-white"><strong>Product Designer</strong></span>
+              <span class="text-white"><strong><?php echo $jobTitle; ?></strong></span>
             </div>
           </div>
         </div>
@@ -112,14 +154,14 @@
           <div class="col-lg-8 mb-4 mb-lg-0">
             <div class="d-flex align-items-center">
               <div class="border p-2 d-inline-block mr-3 rounded">
-                <img src="images/job_logo_5.jpg" alt="Image">
+                <img src="<?php echo $logo; ?>" alt="Image" style="width: 150px; height: 150px;">
               </div>
               <div>
-                <h2>Product Designer</h2>
+                <h2><?php echo $jobTitle; ?></h2>
                 <div>
-                  <span class="ml-0 mr-2 mb-2"><span class="icon-briefcase mr-2"></span>Puma</span>
-                  <span class="m-2"><span class="icon-room mr-2"></span>New York City</span>
-                  <span class="m-2"><span class="icon-clock-o mr-2"></span><span class="text-primary">Full Time</span></span>
+                  <span class="ml-0 mr-2 mb-2"><span class="icon-briefcase mr-2"></span><?php echo $companyName; ?></span>
+                  <span class="m-2"><span class="icon-room mr-2"></span><?php echo $location; ?></span>
+                  <span class="m-2"><span class="icon-clock-o mr-2"></span><span class="text-primary"><?php echo $jobType; ?></span></span>
                 </div>
               </div>
             </div>
@@ -140,10 +182,9 @@
         <div class="row">
           <div class="col-lg-8">
             <div class="mb-5">
-              <figure class="mb-5"><img src="images/job_single_img_1.jpg" alt="Image" class="img-fluid rounded"></figure>
+              <figure class="mb-5"><img src=" <?php echo $featuredImage; ?>" alt="Image" class="img-fluid rounded"></figure>
               <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-align-left mr-3"></span>Job Description</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis illum fuga eveniet. Deleniti asperiores, commodi quae ipsum quas est itaque, ipsa, dolore beatae voluptates nemo blanditiis iste eius officia minus.</p>
-              <p>Velit unde aliquam et voluptas reiciendis non sapiente labore, deleniti asperiores blanditiis nihil quia officiis dolor vero iste dolore vel molestiae saepe. Id nisi, consequuntur sunt impedit quidem, vitae mollitia!</p>
+              <?php echo $jobDescription; ?>
             </div>
             <div class="mb-5">
               <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-rocket mr-3"></span>Responsibilities</h3>
@@ -192,14 +233,14 @@
             <div class="bg-light p-3 border rounded mb-4">
               <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Job Summary</h3>
               <ul class="list-unstyled pl-3 mb-0">
-                <li class="mb-2"><strong class="text-black">Published on:</strong> April 14, 2019</li>
-                <li class="mb-2"><strong class="text-black">Vacancy:</strong> 20</li>
-                <li class="mb-2"><strong class="text-black">Employment Status:</strong> Full-time</li>
-                <li class="mb-2"><strong class="text-black">Experience:</strong> 2 to 3 year(s)</li>
-                <li class="mb-2"><strong class="text-black">Job Location:</strong> New ork City</li>
-                <li class="mb-2"><strong class="text-black">Salary:</strong> $60k - $100k</li>
-                <li class="mb-2"><strong class="text-black">Gender:</strong> Any</li>
-                <li class="mb-2"><strong class="text-black">Application Deadline:</strong> April 28, 2019</li>
+                <li class="mb-2"><strong class="text-black">Published on:</strong> <?php echo $formattedPublishDate; ?></li>
+                <li class="mb-2"><strong class="text-black">Vacancy:</strong> <?php echo $vacancy; ?></li>
+                <li class="mb-2"><strong class="text-black">Employment Status:</strong> <?php echo $jobType; ?></li>
+                <li class="mb-2"><strong class="text-black">Experience:</strong> <?php echo $experience; ?></li>
+                <li class="mb-2"><strong class="text-black">Job Location:</strong> <?php echo $location; ?></li>
+                <li class="mb-2"><strong class="text-black">Salary:</strong> <?php echo $salary; ?></li>
+                <li class="mb-2"><strong class="text-black">Gender:</strong> <?php echo $gender; ?></li>
+                <li class="mb-2"><strong class="text-black">Application Deadline:</strong> <?php echo $formattedDeadlineDate; ?></li>
               </ul>
             </div>
 
@@ -218,180 +259,7 @@
       </div>
     </section>
 
-    <section class="site-section" id="next">
-      <div class="container">
-
-        <div class="row mb-5 justify-content-center">
-          <div class="col-md-7 text-center">
-            <h2 class="section-title mb-2">22,392 Related Jobs</h2>
-          </div>
-        </div>
-        
-        <ul class="job-listings mb-5">
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="images/job_logo_1.jpg" alt="Image" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Product Designer</h2>
-                <strong>Adidas</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> New York, New York
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-danger">Part Time</span>
-              </div>
-            </div>
-            
-          </li>
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="images/job_logo_2.jpg" alt="Image" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Digital Marketing Director</h2>
-                <strong>Sprint</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> Overland Park, Kansas 
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>
-
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="images/job_logo_3.jpg" alt="Image" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Back-end Engineer (Python)</h2>
-                <strong>Amazon</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> Overland Park, Kansas 
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>
-
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="images/job_logo_4.jpg" alt="Image" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Senior Art Director</h2>
-                <strong>Microsoft</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> Anywhere 
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>
-
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="images/job_logo_5.jpg" alt="Image" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Product Designer</h2>
-                <strong>Puma</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> San Mateo, CA 
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="images/job_logo_1.jpg" alt="Image" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Product Designer</h2>
-                <strong>Adidas</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> New York, New York
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-danger">Part Time</span>
-              </div>
-            </div>
-            
-          </li>
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="images/job_logo_2.jpg" alt="Image" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Digital Marketing Director</h2>
-                <strong>Sprint</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> Overland Park, Kansas 
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>
-
-          
-
-          
-        </ul>
-
-        <div class="row pagination-wrap">
-          <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
-            <span>Showing 1-7 Of 22,392 Jobs</span>
-          </div>
-          <div class="col-md-6 text-center text-md-right">
-            <div class="custom-pagination ml-auto">
-              <a href="#" class="prev">Prev</a>
-              <div class="d-inline-block">
-              <a href="#" class="active">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              </div>
-              <a href="#" class="next">Next</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
+    
     
 
     <section class="bg-light pt-5 testimony-full">

@@ -8,8 +8,12 @@ document.getElementById("jobpost").addEventListener("submit", function(event) {
 
     // Get form data
     var formData = new FormData();
+    formData.append("experience", document.getElementById("experience").value); 
+    formData.append("salary", document.getElementById("salary").value);
+    formData.append("vacancy", document.getElementById("vacancy").value);
+    formData.append("gender", document.getElementById("gender").value);
+    formData.append("applicationDeadline", document.getElementById("applicationDeadline").value);
     formData.append("featuredImage", featuredImageFile);
-    // formData.append("featuredImage", document.getElementById("featuredImage").fi);
     formData.append("email", document.getElementById("email").value);
     formData.append("jobTitle", document.getElementById("job-title").value);
     formData.append("location", document.getElementById("job-location").value);

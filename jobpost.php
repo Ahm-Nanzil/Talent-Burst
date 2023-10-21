@@ -27,6 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $logo = $_FILES["company-logo"];
 
     $publishedDate = date("Y-m-d");
+    $vacancy = $_POST['vacancy'];
+    $experience = $_POST['experience'];
+    $salary = $_POST['salary'];
+    $gender = $_POST['gender'];
+    $applicationDeadline = $_POST['applicationDeadline'];
 
     // Check if a file is uploaded (both featured image and logo)
     if ($featuredImage['error'] === UPLOAD_ERR_OK && $logo['error'] === UPLOAD_ERR_OK) {
@@ -50,8 +55,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             move_uploaded_file($logoTempFilePath, $logoTargetFilePath)) {
 
             // Insert data into the database
-            $sql = "INSERT INTO jobpost (featured_image, email, job_title, location, job_region, job_type, job_description, company_name, tagline, company_description, website, facebook_username, twitter_username, linkedin_username, logo, published_date)
-            VALUES ('$featuredImageTargetFilePath', '$email', '$jobTitle', '$location', '$jobRegion', '$jobType', '$jobDescription', '$companyName', '$tagline', '$companyDescription', '$website', '$facebookUsername', '$twitterUsername', '$linkedinUsername', '$logoTargetFilePath', '$publishedDate')";
+            // $sql = "INSERT INTO jobpost (featured_image, email, job_title, location, job_region, job_type, job_description, company_name, tagline, company_description, website, facebook_username, twitter_username, linkedin_username, logo, published_date)
+            // VALUES ('$featuredImageTargetFilePath', '$email', '$jobTitle', '$location', '$jobRegion', '$jobType', '$jobDescription', '$companyName', '$tagline', '$companyDescription', '$website', '$facebookUsername', '$twitterUsername', '$linkedinUsername', '$logoTargetFilePath', '$publishedDate')";
+
+             $sql = "INSERT INTO jobpost (featured_image, email, job_title, location, job_region, job_type, job_description, company_name, tagline, company_description, website, facebook_username, twitter_username, linkedin_username, logo, published_date, vacancy, experience, salary, gender, application_deadline)
+             VALUES ('$featuredImageTargetFilePath', '$email', '$jobTitle', '$location', '$jobRegion', '$jobType', '$jobDescription', '$companyName', '$tagline', '$companyDescription', '$website', '$facebookUsername', '$twitterUsername', '$linkedinUsername', '$logoTargetFilePath', '$publishedDate', '$vacancy', '$experience', '$salary', '$gender', '$applicationDeadline')";
+
+
 
             // Perform the SQL query
             if ($connection->query($sql) === TRUE) {

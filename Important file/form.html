@@ -78,3 +78,43 @@
     //  // Insert data into the database
     //  $sql = "INSERT INTO jobpost (featured_image, email, job_title, location, job_region, job_type, job_description, company_name, tagline, company_description, website, facebook_username, twitter_username, linkedin_username, logo, published_date, vacancy, experience, salary, gender, application_deadline)
     //  VALUES ('$featuredImageTargetFilePath', '$email', '$jobTitle', '$location', '$jobRegion', '$jobType', '$jobDescription', '$companyName', '$tagline', '$companyDescription', '$website', '$facebookUsername', '$twitterUsername', '$linkedinUsername', '$logoTargetFilePath', '$publishedDate', '$vacancy', '$experience', '$salary', '$gender', '$applicationDeadline')";
+
+
+     <!--<div class="form-group">
+                <label for="vacancy">Vacancy</label>
+                <input type="number" class="form-control" id="vacancy" name="vacancy" placeholder="Number of Vacancies">
+            </div>
+
+            <div class="form-group">
+              <label for="gender">Gender</label>
+              <select class="selectpicker border rounded" id="gender" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Preferable">
+                <option>Any</option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="applicationDeadline">Application Deadline</label>
+                <input type="date" class="form-control" id="applicationDeadline" name="applicationDeadline">
+            </div> -->
+
+            <!-- end manual -->
+
+             <!-- <div class="form-group">
+                <label for="workExpirence">Experience</label>
+                <select class="selectpicker border rounded" id="workExpirence" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Experience">
+                  <option>Anyone</option>
+                  <option>Atleast 1 year</option>
+                  <option>2 to 3 year(s)</option>
+                  <option>Minimum 5 year(s)</option>
+                </select>
+              </div> -->
+
+
+
+              formData.append("experience", document.getElementById("experience").value); // Added experience field
+              formData.append("salary", document.getElementById("salary").value);
+              formData.append("vacancy", document.getElementById("vacancy").value);
+              formData.append("gender", document.getElementById("gender").value);
+              formData.append("applicationDeadline", document.getElementById("applicationDeadline").value);

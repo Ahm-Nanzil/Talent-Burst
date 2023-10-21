@@ -30,8 +30,12 @@ $createTable = 'CREATE TABLE ' . $TableName . ' (
     twitter_username VARCHAR(255),
     linkedin_username VARCHAR(255),
     logo VARCHAR(255),
-    
-    published_date DATE
+    published_date DATE,
+    vacancy VARCHAR(5),
+    experience VARCHAR(255),
+    salary VARCHAR(255),
+    gender VARCHAR(255),
+    application_deadline DATE
 )';
 
 if ($connection->query($createTable)) {

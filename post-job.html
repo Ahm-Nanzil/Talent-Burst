@@ -135,6 +135,8 @@
             <form action="jobpost.php" class="p-4 p-md-5 border rounded" method="post" id="jobpost" enctype="multipart/form-data">
               <h3 class="text-black mb-5 border-bottom pb-2">Job Details</h3>
               
+
+
               <div class="form-group">
                 <label for="company-website-tw d-block">Company Environment Image</label><br>
                 <img id="previewImage" src=""  style="max-width: 300px; max-height: 200px;">
@@ -181,10 +183,11 @@
                   <option>Full Time</option>
                 </select>
               </div>
-<!-- Manually add -->
-              <!-- <div class="form-group">
+
+              <!-- <input type="text"  id="salary"  placeholder="e.g. $60k - $100k"> -->
+              <div class="form-group">
                 <label for="expirence">Experience</label>
-                <select class="selectpicker border rounded" id="expirence" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Experience">
+                <select class="selectpicker border rounded" id="experience" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Experience">
                   <option>Anyone</option>
                   <option>Atleast 1 year</option>
                   <option>2 to 3 year(s)</option>
@@ -196,27 +199,27 @@
                 <label for="salary">Salary</label>
                 <input type="text" class="form-control" id="salary" name="salary" placeholder="e.g. $60k - $100k">
             </div>
-            
-            <div class="form-group">
-                <label for="vacancy">Vacancy</label>
-                <input type="number" class="form-control" id="vacancy" name="vacancy" placeholder="Number of Vacancies">
-            </div>
 
             <div class="form-group">
-              <label for="gender">Gender</label>
-              <select class="selectpicker border rounded" id="gender" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Preferable">
-                <option>Any</option>
-                <option>Male</option>
-                <option>Female</option>
-              </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="applicationDeadline">Application Deadline</label>
-                <input type="date" class="form-control" id="applicationDeadline" name="applicationDeadline">
-            </div> -->
+              <label for="vacancy">Vacancy</label>
+              <input type="number" class="form-control" id="vacancy" name="vacancy" placeholder="Number of Vacancies">
+          </div>
 
-            <!-- end manual -->
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select class="selectpicker border rounded" id="gender" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Preferable">
+              <option>Any</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="applicationDeadline">Application Deadline</label>
+            <input type="date" class="form-control" id="applicationDeadline" name="applicationDeadline">
+        </div>
+
+
 
 
               <div class="form-group">

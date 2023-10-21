@@ -29,7 +29,9 @@ $createTable = 'CREATE TABLE ' . $TableName . ' (
     facebook_username VARCHAR(255),
     twitter_username VARCHAR(255),
     linkedin_username VARCHAR(255),
-    logo VARCHAR(255)
+    logo VARCHAR(255),
+    
+    published_date DATE
 )';
 
 if ($connection->query($createTable)) {

@@ -26,6 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $linkedinUsername = $_POST['linkedinUsername'];
     $logo = $_FILES["company-logo"];
 
+    $publishedDate = date("Y-m-d");
+
     // Check if a file is uploaded (both featured image and logo)
     if ($featuredImage['error'] === UPLOAD_ERR_OK && $logo['error'] === UPLOAD_ERR_OK) {
         // Get the temporary file locations
@@ -48,8 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             move_uploaded_file($logoTempFilePath, $logoTargetFilePath)) {
 
             // Insert data into the database
-            $sql = "INSERT INTO jobpost (featured_image, email, job_title, location, job_region, job_type, job_description, company_name, tagline, company_description, website, facebook_username, twitter_username, linkedin_username, logo)
-            VALUES ('$featuredImageTargetFilePath', '$email', '$jobTitle', '$location', '$jobRegion', '$jobType', '$jobDescription', '$companyName', '$tagline', '$companyDescription', '$website', '$facebookUsername', '$twitterUsername', '$linkedinUsername', '$logoTargetFilePath')";
+            $sql = "INSERT INTO jobpost (featured_image, email, job_title, location, job_region, job_type, job_description, company_name, tagline, company_description, website, facebook_username, twitter_username, linkedin_username, logo, published_date)
+            VALUES ('$featuredImageTargetFilePath', '$email', '$jobTitle', '$location', '$jobRegion', '$jobType', '$jobDescription', '$companyName', '$tagline', '$companyDescription', '$website', '$facebookUsername', '$twitterUsername', '$linkedinUsername', '$logoTargetFilePath', '$publishedDate')";
 
             // Perform the SQL query
             if ($connection->query($sql) === TRUE) {

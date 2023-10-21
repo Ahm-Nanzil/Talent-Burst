@@ -25,6 +25,7 @@ document.getElementById("jobpost").addEventListener("submit", function(event) {
     formData.append("linkedinUsername", document.getElementById("linkedin-username").value);
     formData.append("company-logo", logoImageFile);
 
+    
     var responseMessage = document.getElementById("responseMessage");
 
      // Log form data to console

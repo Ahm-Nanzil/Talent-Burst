@@ -35,6 +35,9 @@ if ($result->num_rows > 0) {
 
     $formattedPublishDate = date("j F Y", strtotime($publishedDate));
     $formattedDeadlineDate = date("j F Y", strtotime($applicationDeadline));
+    $jobDescription = preg_replace('/<div class="ql-editor"[^>]*>/', '<div class="ql-editor" contenteditable="false">', $jobDescription);
+    $jobDescription = preg_replace('/<div class="ql-tooltip ql-hidden">.*?<\/div>/', '', $jobDescription);
+
 
 
 } else {

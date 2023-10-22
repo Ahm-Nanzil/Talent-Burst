@@ -1,3 +1,28 @@
+<?php
+require 'connection/database.php';
+
+$resultsPerPage = 7;
+
+// Get the current page number from the URL, default to 1 if not set
+$pageNumber = isset($_GET['page']) ? intval($_GET['page']) : 1;
+
+// Calculate the offset for the SQL query based on the current page number
+$offset = ($pageNumber - 1) * $resultsPerPage;
+
+// Modify your SQL query to include LIMIT and OFFSET
+$sql = "SELECT * FROM jobpost LIMIT $resultsPerPage OFFSET $offset";
+$result = $connection->query($sql);
+
+// Get total number of rows from the table
+$totalRowsResult = $connection->query("SELECT COUNT(*) AS total FROM jobpost");
+$totalRows = $totalRowsResult->fetch_assoc()['total'];
+
+// Calculate total number of pages
+$totalPages = ceil($totalRows / $resultsPerPage);
+
+
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -160,6 +185,42 @@
         </div>
         
         <ul class="job-listings mb-5">
+        <?php
+      // Loop through the database results and generate job listings
+      while($row = $result->fetch_assoc()) {
+        $jobTitle = $row["job_title"];
+        $companyName = $row["company_name"];
+        $location = $row["location"];
+        $region =$row["job_region"];
+        $jobType = $row["job_type"];
+        $logo = $row["logo"];
+
+        // ... (retrieve other job attributes as needed)
+
+        // Generate HTML for each job listing
+        echo '<li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">';
+        echo '<a href="job-single.html"></a>';
+        echo '<div class="job-listing-logo">';
+        echo '<img src="'. $logo .'" alt="Image" class="img-fluid">'; // You can set a default image or use the actual image URL from the database
+        echo '</div>';
+        echo '<div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">';
+        echo '<div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">';
+        echo '<h2>' . $jobTitle . '</h2>';
+        echo '<strong>' . $companyName . '</strong>';
+        echo '</div>';
+        echo '<div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">';
+        echo '<span class="icon-room"></span> ' . $location; echo ', '.$region;
+        echo '</div>';
+        echo '<div class="job-listing-meta">';
+        echo '<span class="badge badge-' . ($jobType == 'Full Time' ? 'success' : 'danger') . '">' . $jobType . '</span>';
+        echo '</div>';
+        echo '</div>';
+        echo '</li>';
+      }
+      
+
+      ?>
+
           <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
             <a href="job-single.html"></a>
             <div class="job-listing-logo">
@@ -200,104 +261,7 @@
             </div>
           </li>
 
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="images/job_logo_3.jpg" alt="Image" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Back-end Engineer (Python)</h2>
-                <strong>Amazon</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> Overland Park, Kansas 
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>
-
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="images/job_logo_4.jpg" alt="Image" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Senior Art Director</h2>
-                <strong>Microsoft</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> Anywhere 
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>
-
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="images/job_logo_5.jpg" alt="Image" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Product Designer</h2>
-                <strong>Puma</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> San Mateo, CA 
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="images/job_logo_1.jpg" alt="Image" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Product Designer</h2>
-                <strong>Adidas</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> New York, New York
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-danger">Part Time</span>
-              </div>
-            </div>
-            
-          </li>
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="images/job_logo_2.jpg" alt="Image" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Digital Marketing Director</h2>
-                <strong>Sprint</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> Overland Park, Kansas 
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>
+         
 
           
 
@@ -306,9 +270,38 @@
 
         <div class="row pagination-wrap">
           <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
-            <span>Showing 1-7 Of 43,167 Jobs</span>
+            <span>Showing 1-7 Of  <?php echo $totalRows?>
+    Jobs
+
+
+            </span>
           </div>
           <div class="col-md-6 text-center text-md-right">
+    <div class="custom-pagination ml-auto">
+
+        <?php if ($pageNumber > 1): ?>
+            <a href="?page=<?= ($pageNumber - 1) ?>" class="prev">Prev</a>
+        <?php endif; ?>
+        
+        <div class="d-inline-block">
+            <?php
+            $startPage = max(1, $pageNumber - 2);
+            $endPage = min($totalPages, $pageNumber + 2);
+            
+            for ($i = $startPage; $i <= $endPage; $i++) {
+                $activeClass = ($i === $pageNumber) ? 'active' : '';
+                echo '<a href="?page=' . $i . '" class="page-link ' . $activeClass . '">' . $i . '</a>';
+            }
+            ?>
+        </div>
+
+        <?php if ($pageNumber < $totalPages): ?>
+            <a href="?page=<?= ($pageNumber + 1) ?>" class="next">Next</a>
+        <?php endif; ?>
+    </div>
+</div>
+
+                    <!-- <div class="col-md-6 text-center text-md-right">
             <div class="custom-pagination ml-auto">
               <a href="#" class="prev">Prev</a>
               <div class="d-inline-block">
@@ -319,7 +312,8 @@
               </div>
               <a href="#" class="next">Next</a>
             </div>
-          </div>
+          </div> -->
+
         </div>
 
       </div>
@@ -418,6 +412,11 @@
     <script src="js/bootstrap-select.min.js"></script>
     
     <script src="js/custom.js"></script>
+
+    <!-- Manual js -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="myjs/pagination.js"></script>
+
    
    
      

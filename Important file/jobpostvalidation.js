@@ -1,6 +1,8 @@
 document.getElementById("jobpost").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the form from submitting the traditional way
 
+
+    
     // Get form data
     var formData = new FormData();
     formData.append("featuredImage", document.getElementById("featuredImage").value);

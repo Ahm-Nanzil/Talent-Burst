@@ -65,10 +65,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Perform the SQL query
             if ($connection->query($sql) === TRUE) {
+
+
+                $jobpostId = $connection->insert_id;
+
                 // Return a success message (this will be sent back to the client-side JavaScript)
                 $response['success'] = true;
                 $response['message'] = "Data successfully processed.";
                 $response['condition'] = "query_success";
+                $response['jobpostId'] = $jobpostId;
+
+                
             } else {
                 // If the query fails, set success to false and provide an error message
                 $response['success'] = false;

@@ -1,39 +1,63 @@
-document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the form from submitting the traditional way
-    var email = document.getElementById("emailData").value;
-    var password = document.getElementById("passwordData").value;
-    var loginMessageElement = document.getElementById("loginMessage");
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("jobpost").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the form from submitting the traditional way
 
+        var featuredImageInput = document.getElementById("featuredImage");
+        var featuredImageFile = featuredImageInput.files[0];
+        var logoImageInput = document.getElementById("company-logo");
+        var logoImageFile = logoImageInput.files[0];
 
-    if (email.trim() === "" || password.trim() === "") {
-        loginMessageElement.textContent = "Please fill out all fields.";
-    } else {
-        loginMessageElement.textContent = ""; // Clear previous error message
+        // Get form data
+        var formData = new FormData();
+        formData.append("experience", document.getElementById("experience").value);
+        // ... (append other form fields similarly)
 
-        // Prepare data to send to the server
-        var data = new FormData();
-        data.append("email", email);
-        data.append("password", password);
-
-        // Make an AJAX request to the login script
-        fetch("login.php", {
+        // Make an AJAX request to jobpost.php
+        fetch("jobpost.php", {
             method: "POST",
-            body: data
+            body: formData
         })
-        .then(response => response.json()) // Assuming the PHP script returns JSON data
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            // Parse the JSON response
+            return response.json();
+        })
         .then(data => {
-            // Handle the response from the server (data contains response from PHP script)
-            if (data.success) {
-                // Redirect to dashboard or perform other actions upon successful login
-                window.location.href = "index.html";
-            } else {
-                loginMessageElement.textContent = data.message; // Display login error message
+            try {
+                // Handle the parsed JSON response from the server
+                if (data.success) {
+                    // Handle success
+                    var jobpostId = data.jobpostId;
+
+                    // Attach click event to the button
+                    $("#previewpost").on("click", function() {
+                        // Navigate to the preview-jobpost.php page with the jobpostId parameter
+                        window.location.href = "preview-jobpost.php?jobpostId=" + jobpostId;
+                    });
+
+                    // Update responseMessage on successful form submission
+                    var responseMessage = document.getElementById("responseMessage");
+                    responseMessage.textContent = "Form submitted successfully!";
+                    responseMessage.style.color = "green";
+                } else {
+                    // Handle failure
+                    var responseMessage = document.getElementById("responseMessage");
+                    responseMessage.textContent = "Form submission failed. " + data.message;
+                    responseMessage.style.color = "";
+                }
+            } catch (error) {
+                // Handle parsing error
+                console.error("Error occurred while processing the response:", error);
             }
         })
         .catch(error => {
-            // Handle errors that occurred during the fetch operation
-            loginMessageElement.textContent = "Error occurred during login.";
-            console.error(error);
+            // Update responseMessage on network or parsing error
+            var responseMessage = document.getElementById("responseMessage");
+            responseMessage.textContent = "Error occurred while processing the request: " + error.message;
+            responseMessage.style.color = "";
+            console.error("Error occurred while processing the request:", error);
         });
-    }
+    });
 });

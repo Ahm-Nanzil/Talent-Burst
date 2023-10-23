@@ -1,7 +1,7 @@
 <?php
 require 'connection/database.php';
 
-$sql = "SELECT * FROM jobpost LIMIT 1"; // Fetch only one row
+$sql = "SELECT * FROM jobpost ORDER BY  id DESC LIMIT 1";
 
 $result = $connection->query($sql);
 

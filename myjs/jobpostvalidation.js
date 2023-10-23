@@ -51,8 +51,16 @@ document.getElementById("jobpost").addEventListener("submit", function(event) {
         // Handle the parsed JSON response from the server
         console.log("Server Response:", data);
         if (data.success) {
+             // Handle success
+             var jobpostId = data.jobpostId;
+
+             // Attach click event to the button
+             document.getElementById("previewpost").addEventListener("click", function() {
+                 // Navigate to the preview-jobpost.php page with the jobpostId parameter
+                 window.location.href = "preview-jobpost.php?jobpostId=" + jobpostId;
+             });
             // Update responseMessage on successful form submission
-            responseMessage.textContent = "Form submitted successfully!";
+            responseMessage.textContent = "Form submitted wow successfully!";
             responseMessage.style.color = "green";
             // Do additional actions on success if needed
         } else {

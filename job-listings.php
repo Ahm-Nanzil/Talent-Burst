@@ -3,22 +3,65 @@ require 'connection/database.php';
 
 $resultsPerPage = 7;
 
-// Get the current page number from the URL, default to 1 if not set
-$pageNumber = isset($_GET['page']) ? intval($_GET['page']) : 1;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get form data
+    $jobTitle = $_POST['jobTitle'];
+    $region = $_POST['region'];
+    $jobType = $_POST['jobType'];
 
-// Calculate the offset for the SQL query based on the current page number
-$offset = ($pageNumber - 1) * $resultsPerPage;
+    // Calculate the offset for the SQL query based on the current page number
+    $pageNumber = isset($_GET['page']) ? intval($_GET['page']) : 1;
+    $offset = ($pageNumber - 1) * $resultsPerPage;
 
-// Modify your SQL query to include LIMIT and OFFSET
-$sql = "SELECT * FROM jobpost LIMIT $resultsPerPage OFFSET $offset";
-$result = $connection->query($sql);
 
-// Get total number of rows from the table
-$totalRowsResult = $connection->query("SELECT COUNT(*) AS total FROM jobpost");
-$totalRows = $totalRowsResult->fetch_assoc()['total'];
+// Start with the base SQL query
+$sql = "SELECT * FROM jobpost WHERE 1";
 
-// Calculate total number of pages
-$totalPages = ceil($totalRows / $resultsPerPage);
+// Check if job title is provided, and if so, add it to the SQL query
+if (!empty($jobTitle)) {
+    $sql .= " AND job_title LIKE '%$jobTitle%'";
+}
+
+// Check if region is provided and not "Anywhere", and if so, add it to the SQL query
+if (!empty($region) && $region != "Anywhere") {
+    $sql .= " AND TRIM(job_region) = '$region'";
+}
+
+// Check if job type is provided and not "Any", and if so, add it to the SQL query
+if (!empty($jobType) && $jobType != "Any") {
+    $sql .= " AND job_type = '$jobType'";
+}
+
+// Add LIMIT and OFFSET to the SQL query for pagination
+$sql .= " LIMIT $resultsPerPage OFFSET $offset";
+
+
+echo $sql;
+
+    // Perform the SQL query
+    $result = $connection->query($sql);
+
+   
+  }
+
+// $resultsPerPage = 7;
+
+// // Get the current page number from the URL, default to 1 if not set
+// $pageNumber = isset($_GET['page']) ? intval($_GET['page']) : 1;
+
+// // Calculate the offset for the SQL query based on the current page number
+// $offset = ($pageNumber - 1) * $resultsPerPage;
+
+// // Modify your SQL query to include LIMIT and OFFSET
+// $sql = "SELECT * FROM jobpost LIMIT $resultsPerPage OFFSET $offset";
+// $result = $connection->query($sql);
+
+// // Get total number of rows from the table
+// $totalRowsResult = $connection->query("SELECT COUNT(*) AS total FROM jobpost");
+// $totalRows = $totalRowsResult->fetch_assoc()['total'];
+
+// // Calculate total number of pages
+// $totalPages = ceil($totalRows / $resultsPerPage);
 
 
 
@@ -71,11 +114,11 @@ $totalPages = ceil($totalRows / $resultsPerPage);
     <header class="site-navbar mt-3">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="site-logo col-6"><a href="index.html">JobBoard</a></div>
+          <div class="site-logo col-6"><a href="index.php">JobBoard</a></div>
 
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="index.php" class="nav-link">Home</a></li>
               <li><a href="about.html">About</a></li>
               <li class="has-children">
                 <a href="job-listings.html" class="active">Job Listings</a>
@@ -126,13 +169,13 @@ $totalPages = ceil($totalRows / $resultsPerPage);
               <h1 class="text-white font-weight-bold">The Easiest Way To Get Your Dream Job</h1>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, quas fugit ex!</p>
             </div>
-            <form method="post" class="search-jobs-form">
+            <form action="job-listings.php" method="post" class="search-jobs-form">
               <div class="row mb-5">
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                  <input type="text" class="form-control form-control-lg" placeholder="Job title, Company...">
+                  <input type="text" class="form-control form-control-lg" name="jobTitle" placeholder="Job title, Company...">
                 </div>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                  <select class="selectpicker" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select Region">
+                  <select class="selectpicker" name="region" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select Region">
                     <option>Anywhere</option>
                     <option>San Francisco</option>
                     <option>Palo Alto</option>
@@ -145,7 +188,7 @@ $totalPages = ceil($totalRows / $resultsPerPage);
                   </select>
                 </div>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                  <select class="selectpicker" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select Job Type">
+                  <select class="selectpicker" name="jobType" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select Job Type">
                     <option>Part Time</option>
                     <option>Full Time</option>
                   </select>
@@ -195,6 +238,9 @@ $totalPages = ceil($totalRows / $resultsPerPage);
         $jobType = $row["job_type"];
         $logo = $row["logo"];
 
+        echo $jobTitle;
+        echo "-------------------------------------------------------------------";
+
         // ... (retrieve other job attributes as needed)
 
         // Generate HTML for each job listing
@@ -221,7 +267,7 @@ $totalPages = ceil($totalRows / $resultsPerPage);
 
       ?>
 
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+          <!-- <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
             <a href="job-single.html"></a>
             <div class="job-listing-logo">
               <img src="images/job_logo_1.jpg" alt="Image" class="img-fluid">
@@ -259,7 +305,7 @@ $totalPages = ceil($totalRows / $resultsPerPage);
                 <span class="badge badge-success">Full Time</span>
               </div>
             </div>
-          </li>
+          </li> -->
 
          
 
@@ -327,7 +373,7 @@ $totalPages = ceil($totalRows / $resultsPerPage);
             <p class="mb-0 text-white lead">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci impedit.</p>
           </div>
           <div class="col-md-3 ml-auto">
-            <a href="#" class="btn btn-warning btn-block btn-lg">Sign Up</a>
+          <a href="join.html" class="btn btn-warning btn-block btn-lg">Join with us!</a>
           </div>
         </div>
       </div>
@@ -415,7 +461,7 @@ $totalPages = ceil($totalRows / $resultsPerPage);
 
     <!-- Manual js -->
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-    <script src="myjs/pagination.js"></script>
+    <!-- <script src="myjs/pagination.js"></script> -->
 
    
    

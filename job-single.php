@@ -1,4 +1,59 @@
 
+<?php
+require 'connection/database.php';
+
+if (isset($_GET['jobID'])) {
+  $jobID = $_GET['jobID'];
+
+  // Now you can use $jobID in your code
+} else {
+  // Handle the case when jobID is not provided in the URL
+  echo "Job ID not provided in the URL.";
+}
+
+$sql = "SELECT * FROM jobpost WHERE  id= $jobID ";
+
+$result = $connection->query($sql);
+
+if ($result->num_rows > 0) {
+    // Output data of the first row
+    $row = $result->fetch_assoc();
+
+    // Assign each column to a variable
+    $id = $row["id"];
+    $featuredImage = $row["featured_image"];
+    $email = $row["email"];
+    $jobTitle = $row["job_title"];
+    $location = $row["location"];
+    $jobRegion = $row["job_region"];
+    $jobType = $row["job_type"];
+    $jobDescription = $row["job_description"];
+    $companyName = $row["company_name"];
+    $tagline = $row["tagline"];
+    $companyDescription = $row["company_description"];
+    $website = $row["website"];
+    $facebookUsername = $row["facebook_username"];
+    $twitterUsername = $row["twitter_username"];
+    $linkedinUsername = $row["linkedin_username"];
+    $logo = $row["logo"];
+    $publishedDate = $row["published_date"];
+    $vacancy = $row["vacancy"];
+    $experience = $row["experience"];
+    $salary = $row["salary"];
+    $gender = $row["gender"];
+    $applicationDeadline = $row["application_deadline"];
+
+    $formattedPublishDate = date("j F Y", strtotime($publishedDate));
+    $formattedDeadlineDate = date("j F Y", strtotime($applicationDeadline));
+    $jobDescription = preg_replace('/<div class="ql-editor"[^>]*>/', '<div class="ql-editor" contenteditable="false">', $jobDescription);
+    $jobDescription = preg_replace('/<div class="ql-tooltip ql-hidden">.*?<\/div>/', '', $jobDescription);
+
+
+
+} else {
+    echo "0 results";
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -44,7 +99,7 @@
     <header class="site-navbar mt-3">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="site-logo col-6"><a href="index.html">JobBoard</a></div>
+          <div class="site-logo col-6"><a href="index.php">JobBoard</a></div>
 
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
@@ -135,13 +190,14 @@
             </div>
           </div>
         </div>
+
+
         <div class="row">
           <div class="col-lg-8">
             <div class="mb-5">
-              <figure class="mb-5"><img src="images/job_single_img_1.jpg" alt="Image" class="img-fluid rounded"></figure>
+              <figure class="mb-5"><img src=" <?php echo $featuredImage; ?>" alt="Image" class="img-fluid rounded"></figure>
               <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-align-left mr-3"></span>Job Description</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis illum fuga eveniet. Deleniti asperiores, commodi quae ipsum quas est itaque, ipsa, dolore beatae voluptates nemo blanditiis iste eius officia minus.</p>
-              <p>Velit unde aliquam et voluptas reiciendis non sapiente labore, deleniti asperiores blanditiis nihil quia officiis dolor vero iste dolore vel molestiae saepe. Id nisi, consequuntur sunt impedit quidem, vitae mollitia!</p>
+              <?php echo $jobDescription; ?>
             </div>
             <div class="mb-5">
               <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-rocket mr-3"></span>Responsibilities</h3>
@@ -190,14 +246,14 @@
             <div class="bg-light p-3 border rounded mb-4">
               <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Job Summary</h3>
               <ul class="list-unstyled pl-3 mb-0">
-                <li class="mb-2"><strong class="text-black">Published on:</strong> April 14, 2019</li>
-                <li class="mb-2"><strong class="text-black">Vacancy:</strong> 20</li>
-                <li class="mb-2"><strong class="text-black">Employment Status:</strong> Full-time</li>
-                <li class="mb-2"><strong class="text-black">Experience:</strong> 2 to 3 year(s)</li>
-                <li class="mb-2"><strong class="text-black">Job Location:</strong> New ork City</li>
-                <li class="mb-2"><strong class="text-black">Salary:</strong> $60k - $100k</li>
-                <li class="mb-2"><strong class="text-black">Gender:</strong> Any</li>
-                <li class="mb-2"><strong class="text-black">Application Deadline:</strong> April 28, 2019</li>
+                <li class="mb-2"><strong class="text-black">Published on:</strong> <?php echo $formattedPublishDate; ?></li>
+                <li class="mb-2"><strong class="text-black">Vacancy:</strong> <?php echo $vacancy; ?></li>
+                <li class="mb-2"><strong class="text-black">Employment Status:</strong> <?php echo $jobType; ?></li>
+                <li class="mb-2"><strong class="text-black">Experience:</strong> <?php echo $experience; ?></li>
+                <li class="mb-2"><strong class="text-black">Job Location:</strong> <?php echo $location; ?></li>
+                <li class="mb-2"><strong class="text-black">Salary:</strong> <?php echo $salary; ?></li>
+                <li class="mb-2"><strong class="text-black">Gender:</strong> <?php echo $gender; ?></li>
+                <li class="mb-2"><strong class="text-black">Application Deadline:</strong> <?php echo $formattedDeadlineDate; ?></li>
               </ul>
             </div>
 

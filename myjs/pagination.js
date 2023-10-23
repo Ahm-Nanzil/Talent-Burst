@@ -1,6 +1,7 @@
 function loadJobListings(page) {
+    console.log("hello dear");
     $.ajax({
-        url: 'job-listings.php?page=' + page,
+        url: 'index.php?page=' + page,
         method: 'GET',
         dataType: 'html',
         success: function(data) {

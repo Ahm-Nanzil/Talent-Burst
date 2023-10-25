@@ -57,7 +57,7 @@ if ($result->num_rows > 0) {
 <!doctype html>
 <html lang="en">
   <head>
-    <title>JobBoard &mdash; Website Template by Colorlib</title>
+    <title>TalentBurst</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -99,11 +99,11 @@ if ($result->num_rows > 0) {
     <header class="site-navbar mt-3">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="site-logo col-6"><a href="index.php">JobBoard</a></div>
+          <div class="site-logo col-6"><a href="index.php">TalentBurst</a></div>
 
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-              <li><a href="index.php" class="nav-link ">Home</a></li>
+              <li><a href="index.html" class="nav-link ">Home</a></li>
               <li><a href="about.html">About</a></li>
               <li class="has-children">
                 <a href="job-listings.html" class="active">Job Listings</a>
@@ -167,14 +167,14 @@ if ($result->num_rows > 0) {
           <div class="col-lg-8 mb-4 mb-lg-0">
             <div class="d-flex align-items-center">
               <div class="border p-2 d-inline-block mr-3 rounded">
-                <img src="images/job_logo_5.jpg" alt="Image">
+                <img src="<?php echo $logo; ?>" alt="Image" style="width: 150px; height: 150px;">
               </div>
               <div>
-                <h2>Product Designer</h2>
+                <h2><?php echo $jobTitle; ?></h2>
                 <div>
-                  <span class="ml-0 mr-2 mb-2"><span class="icon-briefcase mr-2"></span>Puma</span>
-                  <span class="m-2"><span class="icon-room mr-2"></span>New York City</span>
-                  <span class="m-2"><span class="icon-clock-o mr-2"></span><span class="text-primary">Full Time</span></span>
+                  <span class="ml-0 mr-2 mb-2"><span class="icon-briefcase mr-2"></span><?php echo $companyName; ?></span>
+                  <span class="m-2"><span class="icon-room mr-2"></span><?php echo $jobRegion; ?></span>
+                  <span class="m-2"><span class="icon-clock-o mr-2"></span><span class="text-primary"><?php echo $jobType; ?></span></span>
                 </div>
               </div>
             </div>
@@ -274,6 +274,7 @@ if ($result->num_rows > 0) {
 
     <section class="site-section" id="next">
       <div class="container">
+        
 
         <div class="row mb-5 justify-content-center">
           <div class="col-md-7 text-center">

@@ -19,6 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (password_verify($password, $storedHashedPassword)) {
             // Passwords match, login successful
+
+            // session_start(); // Start the session
+            // $_SESSION['user_id'] = $row['id']; // Store user ID in the session
+            // echo $row['id'];
+
             echo json_encode(array("success" => true, "message" => "Login successful."));
         } else {
             // Passwords do not match, login failed

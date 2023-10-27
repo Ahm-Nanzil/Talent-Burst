@@ -177,14 +177,14 @@ echo $sql;
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                   <select class="selectpicker" name="region" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select Region">
                     <option>Anywhere</option>
-                    <option>San Francisco</option>
-                    <option>Palo Alto</option>
-                    <option>New York</option>
-                    <option>Manhattan</option>
-                    <option>Ontario</option>
-                    <option>Toronto</option>
-                    <option>Kansas</option>
-                    <option>Mountain View</option>
+                      <option>Barisal</option>
+                      <option>Chittagong</option>
+                      <option>Dhaka</option>
+                      <option>Khulna</option>
+                      <option>Mymensingh</option>
+                      <option>Rajshahi</option>
+                      <option>Rangpur</option>
+                      <option>Sylhet</option>
                   </select>
                 </div>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">

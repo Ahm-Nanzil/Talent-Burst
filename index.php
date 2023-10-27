@@ -1,5 +1,10 @@
 <?php
 require 'connection/database.php';
+session_start(); // Start the session
+
+
+echo $_SESSION['user_id'];
+
 
 $resultsPerPage = 7;
 

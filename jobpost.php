@@ -1,5 +1,6 @@
 <?php
 require 'connection/database.php';
+error_reporting(0);
 
 // Check the connection
 if ($connection->connect_error) {
@@ -8,7 +9,7 @@ if ($connection->connect_error) {
 
 // Check if the request method is POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    
     // Get form data from the AJAX request
     $featuredImage = $_FILES["featuredImage"]; // Use $_FILES to access the uploaded file
     $email = $_POST['email'];
@@ -32,6 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $salary = $_POST['salary'];
     $gender = $_POST['gender'];
     $applicationDeadline = $_POST['applicationDeadline'];
+
+    //get questionaries
+    $questions = json_decode($_POST['questions']);
 
     // Check if a file is uploaded (both featured image and logo)
     if ($featuredImage['error'] === UPLOAD_ERR_OK && $logo['error'] === UPLOAD_ERR_OK) {
@@ -97,9 +101,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Return JSON response
     header('Content-Type: application/json');
+    
     echo json_encode($response);
 
     // Close the database connection
     $connection->close();
 }
+
 ?>

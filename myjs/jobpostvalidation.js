@@ -1,5 +1,29 @@
+const questionsElements = document.querySelectorAll(".question-group");
+
+
+
 document.getElementById("jobpost").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the form from submitting the traditional way
+
+    const questions = [
+
+    ]    
+    questionsElements.forEach((qElement, index)=>{
+
+        questions.push({
+            question_number:index+1,
+            question:qElement.children[1].value,
+            options:{
+                one:qElement.children[2].children[0].children[1].value,
+                two:qElement.children[2].children[1].children[1].value,
+                three:qElement.children[3].children[0].children[1].value,
+                answer:qElement.children[3].children[1].children[1].value
+            },
+            
+        })
+    
+    });
+    
 
     var featuredImageInput = document.getElementById("featuredImage");
     var featuredImageFile = featuredImageInput.files[0];
@@ -28,6 +52,8 @@ document.getElementById("jobpost").addEventListener("submit", function(event) {
     formData.append("twitterUsername", document.getElementById("twitter-username").value);
     formData.append("linkedinUsername", document.getElementById("linkedin-username").value);
     formData.append("company-logo", logoImageFile);
+    //append question
+    formData.append("questions",JSON.stringify(questions));
 
     
     var responseMessage = document.getElementById("responseMessage");
@@ -36,7 +62,7 @@ document.getElementById("jobpost").addEventListener("submit", function(event) {
      console.log("Form Data:", formData);
 
       // Make an AJAX request to jobpost.php
-      fetch("jobpost.php", {
+    fetch("jobpost.php", {
         method: "POST",
         body: formData
     })

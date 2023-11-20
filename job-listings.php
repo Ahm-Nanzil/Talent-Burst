@@ -114,7 +114,7 @@ echo $sql;
     <header class="site-navbar mt-3">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="site-logo col-6"><a href="index.php">JobBoard</a></div>
+          <div class="site-logo col-6"><a href="index.php">TalentBurst</a></div>
 
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
@@ -123,7 +123,7 @@ echo $sql;
               <li class="has-children">
                 <a href="job-listings.html" class="active">Job Listings</a>
                 <ul class="dropdown">
-                  <li><a href="job-single.html">Job Single</a></li>
+                  <li><a href="job-single.php">Job Single</a></li>
                   <li><a href="post-job.html">Post a Job</a></li>
                 </ul>
               </li>
@@ -177,14 +177,14 @@ echo $sql;
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                   <select class="selectpicker" name="region" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select Region">
                     <option>Anywhere</option>
-                    <option>San Francisco</option>
-                    <option>Palo Alto</option>
-                    <option>New York</option>
-                    <option>Manhattan</option>
-                    <option>Ontario</option>
-                    <option>Toronto</option>
-                    <option>Kansas</option>
-                    <option>Mountain View</option>
+                      <option>Barisal</option>
+                      <option>Chittagong</option>
+                      <option>Dhaka</option>
+                      <option>Khulna</option>
+                      <option>Mymensingh</option>
+                      <option>Rajshahi</option>
+                      <option>Rangpur</option>
+                      <option>Sylhet</option>
                   </select>
                 </div>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
@@ -231,6 +231,7 @@ echo $sql;
         <?php
       // Loop through the database results and generate job listings
       while($row = $result->fetch_assoc()) {
+        $jobID = $row["id"];
         $jobTitle = $row["job_title"];
         $companyName = $row["company_name"];
         $location = $row["location"];
@@ -245,7 +246,7 @@ echo $sql;
 
         // Generate HTML for each job listing
         echo '<li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">';
-        echo '<a href="job-single.html"></a>';
+        echo '<a href="job-single.php?jobID=' . $jobID . '"></a>';
         echo '<div class="job-listing-logo">';
         echo '<img src="'. $logo .'" alt="Image" class="img-fluid">'; // You can set a default image or use the actual image URL from the database
         echo '</div>';

@@ -1,8 +1,8 @@
 document.getElementById("signupForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the form from submitting the traditional way
 
-    var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value;
+    var email = document.getElementById("emailSignup").value;
+    var password = document.getElementById("passwordSignup").value;
     var confirmPassword = document.getElementById("confirmPassword").value;
     var responseMessage = document.getElementById("responseMessage");
 

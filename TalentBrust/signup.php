@@ -5,6 +5,7 @@ require 'connection/database.php';
 // Get the form data
 $email = $_POST['email'];
 $password = $_POST['password'];
+$role= $_POST['role'];
 
 // Check connection
 if ($connection->connect_error) {
@@ -15,7 +16,7 @@ if ($connection->connect_error) {
 $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
 // Insert data into the database
-$sql = "INSERT INTO jobseeker (email, password) VALUES ('$email', '$hashedPassword')";
+$sql = "INSERT INTO jobseeker (email, password,role) VALUES ('$email', '$hashedPassword','$role')";
 
 if ($connection->query($sql) === TRUE) {
     // Return a success message (this will be sent back to the client-side JavaScript)

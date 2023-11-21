@@ -17,7 +17,8 @@ $createTable = 'CREATE TABLE ' . $TableName . ' (
     ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(70) NOT NULL,
-    UNIQUE (email)
+    UNIQUE (email),
+    role INT
 )';
 
 if ($connection->query($createTable)) {

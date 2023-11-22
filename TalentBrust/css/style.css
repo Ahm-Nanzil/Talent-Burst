@@ -1694,3 +1694,31 @@ h1, h2, h3, h4 {
     background-color: #007bff;
     color: white;
 }
+
+
+/* Add this to your existing CSS or create a new style.css file */
+
+/* Style for the circular profile picture */
+.profile-picture {
+  width: 50px; /* Adjust the width as needed */
+  height: 50px; /* Adjust the height as needed */
+  cursor: pointer;
+  border-radius: 50%;
+  margin-left: 10px;
+  border: 1px solid #89ba16;
+}
+
+/* Style for the dropdown menu */
+.dropdown-menu {
+  min-width: auto; /* Adjust the minimum width as needed */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
+}
+
+/* Adjust the positioning of the dropdown menu */
+.dropdown-menu.show {
+  position: absolute;
+  transform: translate3d(0, 38px, 0); /* Adjust the vertical distance from the profile picture */
+  top: 0;
+  left: 0;
+  will-change: transform;
+}

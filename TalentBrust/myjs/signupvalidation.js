@@ -4,7 +4,11 @@ document.getElementById("signupForm").addEventListener("submit", function(event)
     var email = document.getElementById("emailSignup").value;
     var password = document.getElementById("passwordSignup").value;
     var confirmPassword = document.getElementById("confirmPassword").value;
+    var role = document.getElementById("roleSignup").value;
     var responseMessage = document.getElementById("responseMessage");
+
+ 
+
 
     if (email.trim() === "" || password.trim() === "" || confirmPassword.trim() === "") {
         responseMessage.textContent = "Please fill out all fields.";
@@ -17,6 +21,7 @@ document.getElementById("signupForm").addEventListener("submit", function(event)
         var data = new FormData();
         data.append("email", email);
         data.append("password", password);
+        data.append("role", role);
 
         // Make an AJAX request to the PHP script
         fetch("signup.php", {

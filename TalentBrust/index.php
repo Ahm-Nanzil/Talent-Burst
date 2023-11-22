@@ -3,8 +3,6 @@ require 'connection/database.php';
 session_start(); // Start the session
 
 
-echo $_SESSION['user_id'];
-
 
 $resultsPerPage = 7;
 
@@ -109,11 +107,55 @@ $totalPages = ceil($totalRows / $resultsPerPage);
               <li class="d-lg-none"><a href="join.html">Log In</a></li>
             </ul>
           </nav>
+
+          
           
           <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
             <div class="ml-auto">
-              <a href="post-job.html" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Job</a>
-              <a href="join.html" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a>
+                                      <?php
+                          if (isset($_SESSION['user_id'])) {
+                              // Check if the user's role is equal to 2
+                              if ($_SESSION['role'] == 2) {
+                          ?>
+                                  <a href="post-job.html" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Job</a>
+                          <?php
+                              }
+                          } else {
+                          ?>
+                              <a href="post-job.html" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Job</a>
+                          <?php
+                          }
+                          ?>
+
+                  
+
+              <!-- Inside the profile dropdown -->
+                          <!-- Update your existing HTML code with the following -->
+
+
+        <!-- Check if user is logged in -->
+        <?php if (isset($_SESSION['user_id'])): ?>
+            <!-- Display circular profile picture -->
+            <img src="profileImg/pf.jpg" alt="Profile" class="profile-picture" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            <!-- Dropdown menu for logged-in user -->
+            <div class="dropdown-menu" aria-labelledby="userDropdown">
+                <!-- Add links to user-related pages (e.g., profile, settings, logout) -->
+                <a class="dropdown-item" href="profile.php">Profile</a>
+                <a class="dropdown-item" href="settings.php">Settings</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="logout.php">Logout</a>
+            </div>
+        <?php else: ?>
+            <!-- Show "Log In" link if user is not logged in -->
+            <a href="join.html" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a>
+        <?php endif; ?>
+    </div>
+    <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
+</div>
+
+
+
             </div>
             <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
           </div>
@@ -122,6 +164,8 @@ $totalPages = ceil($totalRows / $resultsPerPage);
       </div>
     </header>
 
+    
+
     <!-- HOME -->
     <section class="home-section section-hero overlay bg-image" style="background-image: url('images/hero_1.jpg');" id="home-section">
 
@@ -129,8 +173,8 @@ $totalPages = ceil($totalRows / $resultsPerPage);
         <div class="row align-items-center justify-content-center">
           <div class="col-md-12">
             <div class="mb-5 text-center">
-              <h1 class="text-white font-weight-bold">The Easiest Way To Get Your Dream Job</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
+              <h1 class="text-white font-weight-bold">The Easiest Way To Get Your Dream Job!</h1>
+              <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p> -->
             </div>
             <form action="job-listings.php" method="post" class="search-jobs-form">
               <div class="row mb-5">

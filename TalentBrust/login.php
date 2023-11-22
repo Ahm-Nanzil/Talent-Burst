@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $row = mysqli_fetch_assoc($result);
         $storedHashedPassword = $row['password'];
         $userId = $row['ID']; // Retrieve user ID from the $row array
+        $role = $row['role'];
 
         if (password_verify($password, $storedHashedPassword)) {
             // Passwords match, login successful
@@ -24,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_start(); // Start the session
             $_SESSION['user_id'] = $userId; // Store user ID in the session
             $_SESSION['pass'] = $storedHashedPassword;
+            $_SESSION['role'] = $role;
 
             echo json_encode(array("success" => true, "message" => "Login successful.", "user_id" => $_SESSION['user_id']));
         } else {

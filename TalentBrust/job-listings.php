@@ -36,7 +36,6 @@ if (!empty($jobType) && $jobType != "Any") {
 $sql .= " LIMIT $resultsPerPage OFFSET $offset";
 
 
-echo $sql;
 
     // Perform the SQL query
     $result = $connection->query($sql);
@@ -239,8 +238,6 @@ echo $sql;
         $jobType = $row["job_type"];
         $logo = $row["logo"];
 
-        echo $jobTitle;
-        echo "-------------------------------------------------------------------";
 
         // ... (retrieve other job attributes as needed)
 
@@ -315,38 +312,7 @@ echo $sql;
           
         </ul>
 
-        <div class="row pagination-wrap">
-          <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
-            <span>Showing 1-7 Of  <?php echo $totalRows?>
-    Jobs
-
-
-            </span>
-          </div>
-          <div class="col-md-6 text-center text-md-right">
-    <div class="custom-pagination ml-auto">
-
-        <?php if ($pageNumber > 1): ?>
-            <a href="?page=<?= ($pageNumber - 1) ?>" class="prev">Prev</a>
-        <?php endif; ?>
-        
-        <div class="d-inline-block">
-            <?php
-            $startPage = max(1, $pageNumber - 2);
-            $endPage = min($totalPages, $pageNumber + 2);
-            
-            for ($i = $startPage; $i <= $endPage; $i++) {
-                $activeClass = ($i === $pageNumber) ? 'active' : '';
-                echo '<a href="?page=' . $i . '" class="page-link ' . $activeClass . '">' . $i . '</a>';
-            }
-            ?>
-        </div>
-
-        <?php if ($pageNumber < $totalPages): ?>
-            <a href="?page=<?= ($pageNumber + 1) ?>" class="next">Next</a>
-        <?php endif; ?>
-    </div>
-</div>
+     
 
                     <!-- <div class="col-md-6 text-center text-md-right">
             <div class="custom-pagination ml-auto">

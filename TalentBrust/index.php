@@ -173,8 +173,8 @@ $totalPages = ceil($totalRows / $resultsPerPage);
         <div class="row align-items-center justify-content-center">
           <div class="col-md-12">
             <div class="mb-5 text-center">
-              <h1 class="text-white font-weight-bold">The Easiest Way To Get Your Dream Job</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
+              <h1 class="text-white font-weight-bold">The Easiest Way To Get Your Dream Job!</h1>
+              <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p> -->
             </div>
             <form action="job-listings.php" method="post" class="search-jobs-form">
               <div class="row mb-5">

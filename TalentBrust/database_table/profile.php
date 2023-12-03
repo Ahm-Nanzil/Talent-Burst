@@ -1,7 +1,7 @@
 <?php
 require '../connection/database.php';
 
-$TableName = "jobseeker";
+$TableName = "profile";
 
 // Drop Table
 $dropTable = 'DROP TABLE IF EXISTS ' . $TableName;
@@ -14,11 +14,12 @@ if ($connection->query($dropTable)) {
 
 // Create Table
 $createTable = 'CREATE TABLE ' . $TableName . ' (
-    ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(255) NOT NULL,
-    password VARCHAR(70) NOT NULL,
-    UNIQUE (email),
-    role INT
+    profile_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    name VARCHAR(255),
+    email VARCHAR(255),
+    birth_date DATE,
+    FOREIGN KEY (user_id) REFERENCES users (ID)
 )';
 
 if ($connection->query($createTable)) {

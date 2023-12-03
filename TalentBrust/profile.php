@@ -1,11 +1,38 @@
+<?php
+
+require 'connection/database.php';
+session_start(); // Start the session
+if (isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id'];
+
+}
+echo $userId;
+
+$stmt = $connection->prepare("SELECT * FROM profile WHERE user_id = ?");
+$stmt->bind_param("i", $userId); // "i" represents integer type
+
+// Execute the statement
+$stmt->execute();
+
+// Get the result
+$result = $stmt->get_result();
+
+// Fetch the data
+$data = $result->fetch_assoc(); // Use fetch_assoc instead of fetch_all
+
+
+
+// Close the statement and connection
+$stmt->close();
+$connection->close();
+?>
 
 <!doctype html>
 <html lang="en">
   <head>
-    <title>TALENTBURST &mdash; Created by webdot</title>
+    <title>TalentBurst</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
     
     <link rel="stylesheet" href="css/custom-bs.css">
     <link rel="stylesheet" href="css/jquery.fancybox.min.css">
@@ -46,12 +73,12 @@
     <header class="site-navbar mt-3">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="site-logo col-6"><a href="index.php">TALENTBURST</a></div>
+          <div class="site-logo col-6"><a href="index.html">TalentBurst</a></div>
 
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-              <li><a href="index.php" class="nav-link">Home</a></li>
-              <li><a href="about.html">About</a></li>
+              <li><a href="index.html" class="nav-link">Home</a></li>
+              <li><a href="about.html" class="active">About</a></li>
               <li class="has-children">
                 <a href="job-listings.html">Job Listings</a>
                 <ul class="dropdown">
@@ -96,36 +123,44 @@
       <div class="container">
         <div class="row">
           <div class="col-md-7">
-            <h1 class="text-white font-weight-bold">Sign Up/Login</h1>
+            <h1 class="text-white font-weight-bold">Profile</h1>
             <div class="custom-breadcrumbs">
               <a href="#">Home</a> <span class="mx-2 slash">/</span>
-              <span class="text-white"><strong>Log In</strong></span>
+              <span class="text-white"><strong>Profile</strong></span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="site-section">
-      <div class="container">
+    <section class="py-5 bg-image overlay-primary fixed overlay" id="next-section" style="background-image: url('images/hero_1.jpg');">
+    <div class="container">
         <div class="row">
           
 
 
           <div class="col-lg-6" id="loginSignupContainer">
-            <h2 class="mb-4">Join with</h2>
             <form action="login.php" class="p-4 border rounded" id="loginForm">
 
+            <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                <img src="profileImg/pf.jpg" alt="Image" class="img-fluid">
+
+                </div>
+              </div>
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
-                  <label class="text-black" for="fname">Email</label>
-                  <input type="text" id="emailLogin" class="form-control" placeholder="Email address">
+                  <label class="text-black" for="fname">User Name</label>
                 </div>
               </div>
               <div class="row form-group mb-4">
                 <div class="col-md-12 mb-3 mb-md-0">
-                  <label class="text-black" for="fname">Password</label>
-                  <input type="password" id="passwordLogin" class="form-control" placeholder="Password">
+                <label class="text-black" for="fname">Email: <?php echo htmlspecialchars($data['email']); ?> </label>
+                </div>
+              </div>
+              <div class="row form-group mb-4">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  <label class="text-black" for="fname">location: </label>
                 </div>
               </div>
                   <!-- Error Message Container -->
@@ -194,20 +229,24 @@
     
           
         </div>
-        <div class="col-lg-6">
-          <h2 class="mb-4">US !!!</h2>
-          <div class="p-4 border rounded">
-            <img src="myImg/logo.png" alt="Image" class="img-fluid">
-
-          </div>
-        </div>
+        
       </div>
-    </section>
+      
+</section>
+
+
     
+
+
+    
+   
+   
+
     <footer class="site-footer">
 
       <a href="#top" class="smoothscroll scroll-top">
         <span class="icon-keyboard_arrow_up"></span>
+        edit
       </a>
 
       <div class="container">
@@ -282,11 +321,10 @@
     
     <script src="js/custom.js"></script>
 
-    <!-- manually add -->
-    <script src="myjs/signupvalidation.js"></script>
-    <script src="myjs/loginvalidation.js"></script>
+    <!-- my js -->
     <script src="myjs/switch.js"></script>
 
+   
    
   </body>
 </html>

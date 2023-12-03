@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = mysqli_real_escape_string($connection, $password);
 
     // Check if the email and hashed password match in the database
-    $query = "SELECT * FROM jobseeker WHERE email='$email'";
+    $query = "SELECT * FROM users WHERE email='$email'";
     $result = mysqli_query($connection, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {

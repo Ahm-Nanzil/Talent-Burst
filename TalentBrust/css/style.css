@@ -1722,3 +1722,25 @@ h1, h2, h3, h4 {
   left: 0;
   will-change: transform;
 }
+
+.profile-info {
+  position: relative;
+}
+
+.hidden-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  display: none;
+  width: 150px;
+  transition: all 0.5s ease;
+}
+
+.info-visible .hidden-info {
+  display: block;
+  width: 200px;
+  background-color: #4285f4;
+}

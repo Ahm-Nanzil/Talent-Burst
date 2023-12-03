@@ -25,6 +25,10 @@ $totalPages = ceil($totalRows / $resultsPerPage);
 
 
 
+$TotalJobSeekerResult = $connection->query("SELECT COUNT(*) AS total FROM users");
+$TotalJobSeeker = $TotalJobSeekerResult->fetch_assoc()['total'];
+
+
 ?>
 
 <!doctype html>
@@ -75,12 +79,12 @@ $totalPages = ceil($totalRows / $resultsPerPage);
     <header class="site-navbar mt-3">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="site-logo col-6"><a href="index.html">TalentBurst</a></div>
+          <div class="site-logo col-6"><a href="index.php">TalentBurst</a></div>
 
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-              <li><a href="index.html" class="nav-link active">Home</a></li>
-              <li><a href="job-listings.php">About</a></li>
+              <li><a href="index.php" class="nav-link active">Home</a></li>
+              <li><a href="about.html">About</a></li>
               <li class="has-children">
                 <a href="job-listings.html">Job Listings</a>
                 <ul class="dropdown">
@@ -136,7 +140,7 @@ $totalPages = ceil($totalRows / $resultsPerPage);
         <!-- Check if user is logged in -->
         <?php if (isset($_SESSION['user_id'])): ?>
             <!-- Display circular profile picture -->
-            <img src="profileImg/pf.jpg" alt="Profile" class="profile-picture" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="myImg/pf.jpg" alt="Profile" class="profile-picture" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
             <!-- Dropdown menu for logged-in user -->
             <div class="dropdown-menu" aria-labelledby="userDropdown">
@@ -167,7 +171,7 @@ $totalPages = ceil($totalRows / $resultsPerPage);
     
 
     <!-- HOME -->
-    <section class="home-section section-hero overlay bg-image" style="background-image: url('images/hero_1.jpg');" id="home-section">
+    <section class="home-section section-hero overlay bg-image" style="background-image: url('myImg/indexbg.jpg');" id="home-section">
 
       <div class="container">
         <div class="row align-items-center justify-content-center">
@@ -229,22 +233,22 @@ $totalPages = ceil($totalRows / $resultsPerPage);
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-md-7 text-center">
-            <h2 class="section-title mb-2 text-white">JobBoard Site Stats</h2>
-            <p class="lead text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita unde officiis recusandae sequi excepturi corrupti.</p>
+            <h2 class="section-title mb-2 text-white">TalentBurst Site Stats</h2>
+            <p class="lead text-white">Explore the latest trends in the job market, discover valuable insights, and stay ahead in your career.</p>
           </div>
         </div>
         <div class="row pb-0 block__19738 section-counter">
 
           <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
             <div class="d-flex align-items-center justify-content-center mb-2">
-              <strong class="number" data-number="1930">0</strong>
+              <strong class="number" data-number="<?php echo $TotalJobSeeker?>">0</strong>
             </div>
             <span class="caption">Candidates</span>
           </div>
 
           <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
             <div class="d-flex align-items-center justify-content-center mb-2">
-              <strong class="number" data-number="54">0</strong>
+              <strong class="number" data-number="<?php echo $totalRows?>">0</strong>
             </div>
             <span class="caption">Jobs Posted</span>
           </div>
@@ -365,7 +369,7 @@ $totalPages = ceil($totalRows / $resultsPerPage);
         <div class="row align-items-center">
           <div class="col-md-8">
             <h2 class="text-white">Looking For A Job?</h2>
-            <p class="mb-0 text-white lead">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci impedit.</p>
+            <p class="mb-0 text-white lead">Explore exciting opportunities and find your dream job today!</p>
           </div>
           <div class="col-md-3 ml-auto">
             <a href="join.html" class="btn btn-warning btn-block btn-lg">Join with us!</a>
@@ -389,13 +393,13 @@ $totalPages = ceil($totalRows / $resultsPerPage);
             
           </div>
           <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="images/logo_mailchimp.svg" alt="Image" class="img-fluid logo-1">
+            <img src="myImg/company/robi.jpg" alt="Image" class="img-fluid logo-1">
           </div>
           <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="images/logo_paypal.svg" alt="Image" class="img-fluid logo-2">
+            <img src="myImg/company/airtel.png" alt="Image" class="img-fluid logo-2">
           </div>
           <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="images/logo_stripe.svg" alt="Image" class="img-fluid logo-3">
+            <img src="myImg/company/ibm.svg.png" alt="Image" class="img-fluid logo-3">
           </div>
           <div class="col-6 col-lg-3 col-md-6 text-center">
             <img src="images/logo_visa.svg" alt="Image" class="img-fluid logo-4">
@@ -548,6 +552,7 @@ $totalPages = ceil($totalRows / $resultsPerPage);
     <script src="js/bootstrap-select.min.js"></script>
     
     <script src="js/custom.js"></script>
+    
 
     <!-- Manual js -->
     <script src="myjs/pagination.js"></script>

@@ -23,7 +23,7 @@ document.getElementById("jobpost").addEventListener("submit", function(event) {
         })
     
     });
-    
+   
 
     var featuredImageInput = document.getElementById("featuredImage");
     var featuredImageFile = featuredImageInput.files[0];

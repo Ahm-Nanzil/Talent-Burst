@@ -1,6 +1,6 @@
 <?php
 require 'connection/database.php';
-error_reporting(0);
+//error_reporting(0);
 
 // Check the connection
 if ($connection->connect_error) {
@@ -34,8 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $gender = $_POST['gender'];
     $applicationDeadline = $_POST['applicationDeadline'];
 
-    //get questionaries
-    $questions = json_decode($_POST['questions']);
+
 
     // Check if a file is uploaded (both featured image and logo)
     if ($featuredImage['error'] === UPLOAD_ERR_OK && $logo['error'] === UPLOAD_ERR_OK) {
@@ -61,12 +60,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Insert data into the database
             // $sql = "INSERT INTO jobpost (featured_image, email, job_title, location, job_region, job_type, job_description, company_name, tagline, company_description, website, facebook_username, twitter_username, linkedin_username, logo, published_date)
             // VALUES ('$featuredImageTargetFilePath', '$email', '$jobTitle', '$location', '$jobRegion', '$jobType', '$jobDescription', '$companyName', '$tagline', '$companyDescription', '$website', '$facebookUsername', '$twitterUsername', '$linkedinUsername', '$logoTargetFilePath', '$publishedDate')";
+            
+            //generate a job id;
+            $job_id = random_int(1000, 7000);
+            $sql = "INSERT INTO jobpost (id, featured_image, email, job_title, location, job_region, job_type, job_description, company_name, tagline, company_description, website, facebook_username, twitter_username, linkedin_username, logo, published_date, vacancy, experience, salary, gender, application_deadline)
+            VALUES ('$job_id', '$featuredImageTargetFilePath', '$email', '$jobTitle', '$location', '$jobRegion', '$jobType', '$jobDescription', '$companyName', '$tagline', '$companyDescription', '$website', '$facebookUsername', '$twitterUsername', '$linkedinUsername', '$logoTargetFilePath', '$publishedDate', '$vacancy', '$experience', '$salary', '$gender', '$applicationDeadline')";
 
-             $sql = "INSERT INTO jobpost (featured_image, email, job_title, location, job_region, job_type, job_description, company_name, tagline, company_description, website, facebook_username, twitter_username, linkedin_username, logo, published_date, vacancy, experience, salary, gender, application_deadline)
-             VALUES ('$featuredImageTargetFilePath', '$email', '$jobTitle', '$location', '$jobRegion', '$jobType', '$jobDescription', '$companyName', '$tagline', '$companyDescription', '$website', '$facebookUsername', '$twitterUsername', '$linkedinUsername', '$logoTargetFilePath', '$publishedDate', '$vacancy', '$experience', '$salary', '$gender', '$applicationDeadline')";
 
+            //get questionaries
+            $questions = json_decode($_POST['questions'], true);
+            //generate random question id;
 
+            foreach($questions as $question){
 
+                $qn = $question['question_number'];
+                $q = $question['question'];
+                $q_options = $question['options'];
+                $option_one = $q_options['one'];
+                $option_two = $q_options['two'];
+                $option_three = $q_options['three'];
+                $answer = $q_options['answer'];
+
+                $sql2 = "INSERT INTO questions(job_id, question_number, question, option1, option2, option3, answer)
+                VALUES ('$job_id', '$qn', '$q', '$option_one', '$option_two', '$option_three', '$answer');";
+
+                $connection->query($sql2);
+            }
             // Perform the SQL query
             if ($connection->query($sql) === TRUE) {
 

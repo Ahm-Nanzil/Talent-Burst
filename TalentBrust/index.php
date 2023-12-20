@@ -84,7 +84,7 @@ $TotalJobSeeker = $TotalJobSeekerResult->fetch_assoc()['total'];
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
               <li><a href="index.php" class="nav-link active">Home</a></li>
-              <li><a href="about.html">About</a></li>
+              <!-- <li><a href="#">About</a></li> -->
               <li class="has-children">
                 <a href="job-listings.html">Job Listings</a>
                 <ul class="dropdown">
@@ -92,9 +92,9 @@ $TotalJobSeeker = $TotalJobSeekerResult->fetch_assoc()['total'];
                   <li><a href="post-job.html">Post a Job</a></li>
                 </ul>
               </li>
-              <li class="has-children">
-                <a href="services.html">Pages</a>
-                <ul class="dropdown">
+              <!-- <li class="has-children">
+                <a href="services.html">Pages</a> -->
+                <!-- <ul class="dropdown">
                   <li><a href="services.html">Services</a></li>
                   <li><a href="service-single.html">Service Single</a></li>
                   <li><a href="blog-single.html">Blog Single</a></li>
@@ -103,12 +103,12 @@ $TotalJobSeeker = $TotalJobSeekerResult->fetch_assoc()['total'];
                   <li><a href="testimonials.html">Testimonials</a></li>
                   <li><a href="faq.html">Frequently Ask Questions</a></li>
                   <li><a href="gallery.html">Gallery</a></li>
-                </ul>
-              </li>
-              <li><a href="blog.html">Blog</a></li>
-              <li><a href="contact.html">Contact</a></li>
+                </ul> -->
+              <!-- </li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Contact</a></li>
               <li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span> Post a Job</a></li>
-              <li class="d-lg-none"><a href="join.html">Log In</a></li>
+              <li class="d-lg-none"><a href="join.html">Log In</a></li> -->
             </ul>
           </nav>
 
@@ -255,14 +255,14 @@ $TotalJobSeeker = $TotalJobSeekerResult->fetch_assoc()['total'];
 
           <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
             <div class="d-flex align-items-center justify-content-center mb-2">
-              <strong class="number" data-number="120">0</strong>
+              <strong class="number" data-number="0">0</strong>
             </div>
             <span class="caption">Jobs Filled</span>
           </div>
 
           <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
             <div class="d-flex align-items-center justify-content-center mb-2">
-              <strong class="number" data-number="550">0</strong>
+              <strong class="number" data-number="0">0</strong>
             </div>
             <span class="caption">Companies</span>
           </div>
@@ -387,7 +387,7 @@ $TotalJobSeeker = $TotalJobSeekerResult->fetch_assoc()['total'];
             <div class="row justify-content-center">
               <div class="col-md-7">
                 <h2 class="section-title mb-2">Company We've Helped</h2>
-                <p class="lead">Porro error reiciendis commodi beatae omnis similique voluptate rerum ipsam fugit mollitia ipsum facilis expedita tempora suscipit iste</p>
+                <!-- <p class="lead">Porro error reiciendis commodi beatae omnis similique voluptate rerum ipsam fugit mollitia ipsum facilis expedita tempora suscipit iste</p> -->
               </div>
             </div>
             
@@ -422,60 +422,9 @@ $TotalJobSeeker = $TotalJobSeekerResult->fetch_assoc()['total'];
     </section>
 
 
-    <section class="bg-light pt-5 testimony-full">
-        
-        <div class="owl-carousel single-carousel">
+   
 
-        
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-6 align-self-center text-center text-lg-left">
-                <blockquote>
-                  <p>&ldquo;Soluta quasi cum delectus eum facilis recusandae nesciunt molestias accusantium libero dolores repellat id in dolorem laborum ad modi qui at quas dolorum voluptatem voluptatum repudiandae.&rdquo;</p>
-                  <p><cite> &mdash; Corey Woods, @Dribbble</cite></p>
-                </blockquote>
-              </div>
-              <div class="col-lg-6 align-self-end text-center text-lg-right">
-                <img src="images/person_transparent_2.png" alt="Image" class="img-fluid mb-0">
-              </div>
-            </div>
-          </div>
-
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-6 align-self-center text-center text-lg-left">
-                <blockquote>
-                  <p>&ldquo;Soluta quasi cum delectus eum facilis recusandae nesciunt molestias accusantium libero dolores repellat id in dolorem laborum ad modi qui at quas dolorum voluptatem voluptatum repudiandae.&rdquo;</p>
-                  <p><cite> &mdash; Chris Peters, @Google</cite></p>
-                </blockquote>
-              </div>
-              <div class="col-lg-6 align-self-end text-center text-lg-right">
-                <img src="images/person_transparent.png" alt="Image" class="img-fluid mb-0">
-              </div>
-            </div>
-          </div>
-
-      </div>
-
-    </section>
-
-    <section class="pt-5 bg-image overlay-primary fixed overlay" style="background-image: url('images/hero_1.jpg');">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 align-self-center text-center text-md-left mb-5 mb-md-0">
-            <h2 class="text-white">Get The Mobile Apps</h2>
-            <p class="mb-5 lead text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci impedit.</p>
-            <p class="mb-0">
-              <a href="#" class="btn btn-dark btn-md px-4 border-width-2"><span class="icon-apple mr-3"></span>App Store</a>
-              <a href="#" class="btn btn-dark btn-md px-4 border-width-2"><span class="icon-android mr-3"></span>Play Store</a>
-            </p>
-          </div>
-          <div class="col-md-6 ml-auto align-self-end">
-            <img src="images/apps.png" alt="Free Website Template by Free-Template.co" class="img-fluid">
-          </div>
-        </div>
-      </div>
-    </section>
+    
     
     <footer class="site-footer">
 
@@ -528,7 +477,7 @@ $TotalJobSeeker = $TotalJobSeekerResult->fetch_assoc()['total'];
           <div class="col-12">
             <p class="copyright"><small>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+              Webdot
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small></p>
           </div>
         </div>

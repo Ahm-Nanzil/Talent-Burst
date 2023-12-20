@@ -85,13 +85,13 @@ $TotalJobSeeker = $TotalJobSeekerResult->fetch_assoc()['total'];
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
               <li><a href="index.php" class="nav-link active">Home</a></li>
               <!-- <li><a href="#">About</a></li> -->
-              <li class="has-children">
+              <!-- <li class="has-children">
                 <a href="job-listings.html">Job Listings</a>
                 <ul class="dropdown">
                   <li><a href="job-single.html">Job Single</a></li>
                   <li><a href="post-job.html">Post a Job</a></li>
                 </ul>
-              </li>
+              </li> -->
               <!-- <li class="has-children">
                 <a href="services.html">Pages</a> -->
                 <!-- <ul class="dropdown">
@@ -124,11 +124,11 @@ $TotalJobSeeker = $TotalJobSeekerResult->fetch_assoc()['total'];
                                   <a href="post-job.html" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Job</a>
                           <?php
                               }
-                          } else {
+                          } 
+                              
                           ?>
-                              <a href="post-job.html" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Job</a>
                           <?php
-                          }
+                          
                           ?>
 
                   
@@ -401,22 +401,7 @@ $TotalJobSeeker = $TotalJobSeekerResult->fetch_assoc()['total'];
           <div class="col-6 col-lg-3 col-md-6 text-center">
             <img src="myImg/company/ibm.svg.png" alt="Image" class="img-fluid logo-3">
           </div>
-          <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="images/logo_visa.svg" alt="Image" class="img-fluid logo-4">
-          </div>
-
-          <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="images/logo_apple.svg" alt="Image" class="img-fluid logo-5">
-          </div>
-          <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="images/logo_tinder.svg" alt="Image" class="img-fluid logo-6">
-          </div>
-          <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="images/logo_sony.svg" alt="Image" class="img-fluid logo-7">
-          </div>
-          <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="images/logo_airbnb.svg" alt="Image" class="img-fluid logo-8">
-          </div>
+          
         </div>
       </div>
     </section>

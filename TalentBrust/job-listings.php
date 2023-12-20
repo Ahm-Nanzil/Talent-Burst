@@ -166,7 +166,6 @@ $sql .= " LIMIT $resultsPerPage OFFSET $offset";
           <div class="col-md-12">
             <div class="mb-5 text-center">
               <h1 class="text-white font-weight-bold">The Easiest Way To Get Your Dream Job</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, quas fugit ex!</p>
             </div>
             <form action="job-listings.php" method="post" class="search-jobs-form">
               <div class="row mb-5">
@@ -176,14 +175,14 @@ $sql .= " LIMIT $resultsPerPage OFFSET $offset";
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
                   <select class="selectpicker" name="region" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select Region">
                     <option>Anywhere</option>
-                      <option>Barisal</option>
-                      <option>Chittagong</option>
-                      <option>Dhaka</option>
-                      <option>Khulna</option>
-                      <option>Mymensingh</option>
-                      <option>Rajshahi</option>
-                      <option>Rangpur</option>
-                      <option>Sylhet</option>
+                      <option value="Barisal">Barisal</option>
+                      <option value="Chittagong">Chittagong</option>
+                      <option value="Dhaka">Dhaka</option>
+                      <option value="Khulna">Khulna</option>
+                      <option value="Mymensingh">Mymensingh</option>
+                      <option value="Rajshahi">Rajshahi</option>
+                      <option value="Rangpur">Rangpur</option>
+                      <option value="Sylhet">Sylhet</option>
                   </select>
                 </div>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
@@ -222,7 +221,6 @@ $sql .= " LIMIT $resultsPerPage OFFSET $offset";
 
         <div class="row mb-5 justify-content-center">
           <div class="col-md-7 text-center">
-            <h2 class="section-title mb-2">43,167 Job Listed</h2>
           </div>
         </div>
         

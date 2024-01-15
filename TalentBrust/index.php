@@ -146,7 +146,7 @@ $TotalJobSeeker = $TotalJobSeekerResult->fetch_assoc()['total'];
             <div class="dropdown-menu" aria-labelledby="userDropdown">
                 <!-- Add links to user-related pages (e.g., profile, settings, logout) -->
                 <a class="dropdown-item" href="profile.php">Profile</a>
-                <a class="dropdown-item" href="settings.php">Settings</a>
+                <a class="dropdown-item" href="Userchat">Chat</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout.php">Logout</a>
             </div>
